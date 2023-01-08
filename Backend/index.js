@@ -41,10 +41,10 @@ app.use("/management", managementRoutes);
 app.use("/sales", salesRoutes);
 
 /* MONGOOSE SETUP */
-const port = 9000;
+const port =process.env.PORT || 9000;
 mongoose.set("strictQuery", false);
 mongoose
-  .connect("mongodb+srv://niteshsindhu:nitesh@cluster0.rjogyex.mongodb.net/ballavita?retryWrites=true&w=majority")
+  .connect(process.env.MONGO_URL)
   .then(() => {
     app.listen(port, () => {
       console.log(`Server run at the ${port}`);
